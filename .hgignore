@@ -1,4 +1,7 @@
 .DS_Store
 .idea
+tablecalculation.egg-info/
 logs/
+build/
+dist/
 .*\.pyc
