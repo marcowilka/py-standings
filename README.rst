@@ -6,7 +6,9 @@ Python library to calculate tables for football and handball
 Getting Started
 ---------------
 
-Copy the tablecalculation package to your project.
+pip install tablecalculation
+
+Alternatively: copy the tablecalculation package to your project.
 
 Prerequisites
 ~~~~~~~~~~~~~
