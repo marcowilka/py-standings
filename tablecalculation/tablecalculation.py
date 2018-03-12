@@ -81,10 +81,8 @@ class TableCalculation:
             while subSortEnd < len(tps) and tps[subSortEnd].points== currentPoints:
                 subSortEnd=subSortEnd+1
             if subSortEnd-subSortStart > 1:
-                ## changed: this now uses _totalGoalDifference instead of goalDifference which would only return the goal
-                ## difference calculated of matches considered from the list of direct competitors
                 rival_list = [tp.team_id for tp in tps[subSortStart:subSortEnd]]
-                tupleFilter = lambda x: (x.points, x._totalGoalDifference, x._totalGoalsScored)
+                tupleFilter = lambda x: (x.points, x.goalDifference, x._totalGoalDifference, x._totalGoalsScored)
                 tps[subSortStart:subSortEnd] = sorted(tps[subSortStart:subSortEnd], key = lambda x: tupleFilter(x.direct_compare(rival_list)), reverse=True)
             subSortStart=subSortEnd
         return tps
@@ -107,10 +105,8 @@ class TableCalculation:
             while subSortEnd < len(tps) and tps[subSortEnd].pointsScored == currentPointsScored and tps[subSortEnd].pointsTaken == currentPointsTaken:
                 subSortEnd=subSortEnd+1
             if subSortEnd-subSortStart > 1:
-                ## changed: this now uses _totalGoalDifference instead of goalDifference which would only return the goal
-                ## difference calculated of matches consired from the list of direct competitors
                 rival_list = [tp.team_id for tp in tps[subSortStart:subSortEnd]]
-                tupleFilter = lambda x: (x.pointsScored, -x.pointsTaken, x._totalGoalDifference)
+                tupleFilter = lambda x: (x.pointsScored, -x.pointsTaken, x.goalDifference, x._totalGoalDifference)
                 tps[subSortStart:subSortEnd] = sorted(tps[subSortStart:subSortEnd], key = lambda x: tupleFilter(x.direct_compare(rival_list)), reverse=True)
             subSortStart=subSortEnd
         return tps
