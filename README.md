@@ -38,7 +38,7 @@ team name and id for both participiants and goals for the home and away team.
 The module supports two modes for calculation: CALCULATION_MODE_GOAL_DIFFERENCE and CALCULATION_MODE_DIRECT_COMPARE.
 The first one uses points, followed by goal difference and then goals scored as sort order (as used in German Bundesliga for example).
 
-CALCULATION_MODE_DIRECT_COMPARE will first sort by points, then the result of direct comparison between teams with equal points (often used in handball for the Spanish La Liga).
+CALCULATION_MODE_DIRECT_COMPARE will first sort by points, then the result of direct comparison between teams with equal points (often used in handball or the Spanish La Liga).
 
 ## Tests
 
