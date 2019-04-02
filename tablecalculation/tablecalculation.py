@@ -19,7 +19,9 @@ class TableCalculation:
         self.calculation_mode = calculation_mode
 
     def add_adjustment_handball(self, team_id, goalsScored, goalsTaken, pointsScored, pointsTaken, countAs):
-        tp = self.table_items[team_id]
+        tp = self.table_items.get(team_id)
+        if tp is None:
+            return
         goalsScored = int(0 if goalsScored is None else goalsScored)
         goalsTaken = int(0 if goalsTaken is None else goalsTaken)
         pointsScored = int(0 if pointsScored is None else pointsScored)
