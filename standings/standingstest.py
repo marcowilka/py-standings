@@ -2,14 +2,14 @@
 # coding=utf-8
 from .sportstypes import SPORTSTYPES
 from ._match import _Match
-from .tablecalculation import TableCalculation, TABLE_HOME, TABLE_AWAY, TABLE_ALL, CALCULATION_MODE_DIRECT_COMPARE 
+from .standings import Standings, TABLE_HOME, TABLE_AWAY, TABLE_ALL, CALCULATION_MODE_DIRECT_COMPARE
 import unittest
 import requests
 
-class TableCalculationTest(unittest.TestCase):
+class StandingsTest(unittest.TestCase):
     def testFussball1DirectCompare(self):
         # Fussball La Liga Santander, Saison 2016/17, 38. Spieltag
-        t1 = TableCalculation(TABLE_ALL, SPORTSTYPES.FOOTBALL, CALCULATION_MODE_DIRECT_COMPARE)
+        t1 = Standings(TABLE_ALL, SPORTSTYPES.FOOTBALL, CALCULATION_MODE_DIRECT_COMPARE)
 
         result = requests.get('https://api.deinsportplatz.de/api/v1.1/639703/matches/231/135',
                               auth=('pytctest', 'tctest18'))
@@ -33,7 +33,7 @@ class TableCalculationTest(unittest.TestCase):
         m4 = _Match('Team 4', 4, 'Team 5', 5, 13, 13)
         m5 = _Match('Team 4', 4, 'Team 9', 9, 13, 12)
 
-        t1 = TableCalculation(TABLE_ALL, SPORTSTYPES.HANDBALL, CALCULATION_MODE_DIRECT_COMPARE)
+        t1 = Standings(TABLE_ALL, SPORTSTYPES.HANDBALL, CALCULATION_MODE_DIRECT_COMPARE)
         t1.add_match(m2)
         t1.add_match(m3)
         t1.add_match(m1)
@@ -48,7 +48,7 @@ class TableCalculationTest(unittest.TestCase):
 
     def testHandball2(self):
         # Handball 3. Liga Herren, Saison 2015/16, 17. Spieltag
-        t1 = TableCalculation(TABLE_ALL, SPORTSTYPES.HANDBALL, CALCULATION_MODE_DIRECT_COMPARE)
+        t1 = Standings(TABLE_ALL, SPORTSTYPES.HANDBALL, CALCULATION_MODE_DIRECT_COMPARE)
 
         t1.add_match(_Match('DHK Flensborg', 35551, 'SC Magdeburg II', 35561, 41, 23))
         t1.add_match(_Match('SV Meck.-Schwerin', 35651, 'TS Großburgwedel', 35661, 26, 17))

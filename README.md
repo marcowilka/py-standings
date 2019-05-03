@@ -1,12 +1,12 @@
-# Project Title
+# Standings
 
-Python library to calculate tables for football and handball
+Python library to calculate standings for football and handball
 
 ## Getting Started
 
-pip install tablecalculation
+pip install standings
 
-Alternatively: copy the tablecalculation package to your project.
+Alternatively: copy the standings package to your project.
 
 ### Prerequisites
 
@@ -14,14 +14,14 @@ Should work with Python 2.7 and up or 3. Possibly other versions (untested).
 
 ### Usage
 
-It's best to see [tablecalculationtest.py](tablecalculationtest.py) for reference.
+It's best to see [standingstest.py](standingstest.py) for reference.
 
 Basic usage is as follows:
 
 ```
         # Handball 3. Liga Herren, Saison 2015/16, 17. Spieltag
-        # Create table calculation oject with scope, sports type and mode
-        t1 = TableCalculation(TABLE_ALL, SPORTSTYPES.HANDBALL, CALCULATION_MODE_DIRECT_COMPARE)
+        # Create ranking calculation oject with scope, sports type and mode
+        t1 = Standings(TABLE_ALL, SPORTSTYPES.HANDBALL, CALCULATION_MODE_DIRECT_COMPARE)
 
         # add your matches / fixtures (upto desired match day or all)
         t1.add_match(_Match('DHK Flensborg', 35551, 'SC Magdeburg II', 35561, 41, 23))
@@ -45,8 +45,8 @@ CALCULATION_MODE_DIRECT_COMPARE will first sort by points, then the result of di
 Some tests are supplied and can be run like this:
 
 ```
-python -m unittest tablecalculation
-python -m unittest tablecalculation.teampoint
+python -m unittest standings
+python -m unittest standings.teampoint
 ```
 
 ## Authors

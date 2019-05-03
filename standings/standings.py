@@ -11,7 +11,7 @@ TABLE_AWAY = 3
 CALCULATION_MODE_GOAL_DIFFERENCE = 1
 CALCULATION_MODE_DIRECT_COMPARE = 2
 
-class TableCalculation:
+class Standings:
     def __init__(self, table_mode=TABLE_ALL, sports_type=SPORTSTYPES.FOOTBALL, calculation_mode=1):
         self.table_items = {}
         self.table_mode = table_mode
