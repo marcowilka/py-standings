@@ -14,6 +14,7 @@ class TeamPoint(object):
         self.goalsScored = 0
         self.goalsTaken = 0
         self.goalDifference = 0
+        self.goalsScoredAway = 0
         # use this in direct compare mode to count goal difference of ALL matches, not only direct competitors
         self._totalGoalDifference = 0
         self._totalGoalsScored = 0
@@ -45,11 +46,11 @@ class TeamPoint(object):
         if self.sports_type == SPORTSTYPES.FOOTBALL:
             return u'%s - %d - %d\r\n' % (teamName, self.points, self.goalDifference)
         elif self.sports_type == SPORTSTYPES.HANDBALL:
-            return u'%s - %d:%d - %d\r\n' % (teamName, self.pointsScored, self.pointsTaken, self.goalDifference)
+            return u'%s - %d:%d - %d (%d A)\r\n' % (teamName, self.pointsScored, self.pointsTaken, self.goalDifference, self.goalsScoredAway)
 
-    def add_match(self, goalsScored, goalsTaken, rival_id = None):
+    def add_match(self, goalsScored, goalsTaken, rival_id = None, away_score=False):
         if rival_id:
-            self.match_list.append([rival_id,goalsScored,goalsTaken])
+            self.match_list.append([rival_id, goalsScored, goalsTaken, away_score])
         self.goalsScored += goalsScored
         self.goalsTaken += goalsTaken
 
@@ -60,6 +61,9 @@ class TeamPoint(object):
             self.draws += 1
         else:
             self.defeats += 1
+
+        if away_score:
+            self.goalsScoredAway += goalsScored
 
         self._update_fields()
 
@@ -82,7 +86,7 @@ class TeamPoint(object):
         #[newTp.add_match(m[1],m[2]) for m in self.match_list if m[0] in rival_ids]
 
         for m in self.match_list:
-            if m[0] in rival_ids: newTp.add_match(m[1],m[2])
+            if m[0] in rival_ids: newTp.add_match(m[1], m[2], away_score=m[3])
             newTp._totalGoalDifference = newTp._totalGoalDifference + m[1] - m[2]
             newTp._totalGoalsScored = newTp._totalGoalsScored + m[1]
 

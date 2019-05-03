@@ -53,7 +53,7 @@ class TableCalculation:
             if self.table_mode != TABLE_AWAY:
                 tp1.add_match(match.goals_home, match.goals_away, match.team_away_id)
             if self.table_mode != TABLE_HOME:
-                tp2.add_match(match.goals_away, match.goals_home, match.team_home_id)
+                tp2.add_match(match.goals_away, match.goals_home, match.team_home_id, away_score=True)
 
     def get_table(self):
         if (self.sports_type == SPORTSTYPES.HANDBALL):
@@ -108,7 +108,7 @@ class TableCalculation:
                 subSortEnd=subSortEnd+1
             if subSortEnd-subSortStart > 1:
                 rival_list = [tp.team_id for tp in tps[subSortStart:subSortEnd]]
-                tupleFilter = lambda x: (x.pointsScored, -x.pointsTaken, x.goalDifference, x._totalGoalDifference)
+                tupleFilter = lambda x: (x.pointsScored, -x.pointsTaken, x.goalDifference, x.goalsScoredAway, x._totalGoalDifference)
                 tps[subSortStart:subSortEnd] = sorted(tps[subSortStart:subSortEnd], key = lambda x: tupleFilter(x.direct_compare(rival_list)), reverse=True)
             subSortStart=subSortEnd
         return tps
